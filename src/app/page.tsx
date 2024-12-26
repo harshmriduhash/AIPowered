@@ -8,15 +8,13 @@ import "@copilotkit/react-ui/styles.css";
 import "@copilotkit/react-textarea/styles.css";
 
 
-
 const Home = async () => {
  
-  
+
   return (
     <>
         <Header />
           <CopilotKit>
-         
             <CopilotSidebar
               instructions="Help the user research a blog article topic."
               defaultOpen={true}
@@ -37,7 +35,6 @@ const Home = async () => {
             className="group flex flex-col h-full bg-white border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl p-5 "
             href={""}>
            <Image
-            
              className="object-cover h-48 w-96 rounded-xl"
              src="/world.jpeg"
              width={500}
