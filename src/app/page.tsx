@@ -9,8 +9,6 @@ import "@copilotkit/react-textarea/styles.css";
 
 
 const Home = async () => {
- 
-
   return (
     <>
         <Header />
