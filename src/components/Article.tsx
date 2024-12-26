@@ -1,14 +1,8 @@
 "use client";
-import {useRef, useState } from "react";
+import { useRef, useState } from "react";
 
-import {
-  useCopilotAction,
-  useCopilotReadable,
-} from "@copilotkit/react-core";
-import {
- 
-  HTMLCopilotTextAreaElement,
-} from "@copilotkit/react-textarea";
+import { useCopilotAction, useCopilotReadable } from "@copilotkit/react-core";
+import { HTMLCopilotTextAreaElement } from "@copilotkit/react-textarea";
 
 interface CopilotTextareaProps {
   value: string;
@@ -44,18 +38,18 @@ const CopilotTextarea: React.FC<CopilotTextareaProps> = ({
 
 export default CopilotTextarea;
 export function Article() {
-    // Define state variables for article outline, copilot text, and article title
+  // Define state variables for article outline, copilot text, and article title
   const [articleOutline, setArticleOutline] = useState("");
   const [copilotText, setCopilotText] = useState("");
   const [articleTitle, setArticleTitle] = useState("");
   const copilotTextareaRef = useRef<HTMLTextAreaElement>(null);
-  
+
   interface CopilotOptions {
     description: string;
     text: string;
     value: string;
   }
-  
+
   const options: CopilotOptions = {
     description: "Article outline for Copilot assistance",
     text: "Blog article outline: " + JSON.stringify(articleOutline),
@@ -76,7 +70,8 @@ export function Article() {
         {
           name: "articleOutline",
           type: "string",
-          description:"Outline for a blog article that shows what the article covers.",
+          description:
+            "Outline for a blog article that shows what the article covers.",
           required: true,
         },
       ],
@@ -89,13 +84,12 @@ export function Article() {
     []
   );
 
-  return(
+  return (
     // Form element for article input
     <form
-    
       action={""}
-      className="w-full h-full gap-10 flex flex-col items-center p-10">
-        
+      className="w-full h-full gap-10 flex flex-col items-center p-10"
+    >
       {/* Input field for article title */}
       <div className="flex w-full items-start gap-3">
         <textarea
@@ -107,8 +101,8 @@ export function Article() {
           onChange={(event) => setArticleTitle(event.target.value)}
         />
       </div>
-            {/* Textarea for article content */}
-            <textarea
+      {/* Textarea for article content */}
+      <textarea
         className="p-4 w-full aspect-square font-bold text-xl bg-slate-800 text-white rounded-lg resize-none"
         id="content"
         name="content"
@@ -120,37 +114,37 @@ export function Article() {
       {/* Publish button */}
       <button
         type="submit"
-        className="p-4 w-full !bg-slate-800 text-white rounded-lg">Publish</button>
+        className="p-4 w-full !bg-slate-800 text-white rounded-lg"
+      >
+        Publish
+      </button>
       <div>
         {/*Copilot Textarea for article content*/}
         <CopilotTextarea
-        value={copilotText}
-        ref={copilotTextareaRef}
-        placeholder="Write your article content here"
-        onChange={(event) => setCopilotText(event.target.value)}
-        className="p-4 w-full aspect-square font-bold text-xl bg-slate-800 text-white rounded-lg resize-none"
-        placeholderStyle={{
-          color: "white",
-          opacity: 0.5,
-        }}
-        autosuggestionsConfig={{
-          textareaPurpose: articleTitle,
-          chatApiConfigs: {
-            suggestionsApiConfig: {
-              forwardedParams: {
-                max_tokens: 5,
-                stop: ["\n", ".", ","],
+          value={copilotText}
+          ref={copilotTextareaRef}
+          placeholder="Write your article content here"
+          onChange={(event) => setCopilotText(event.target.value)}
+          className="p-4 w-full aspect-square font-bold text-xl bg-slate-800 text-white rounded-lg resize-none"
+          placeholderStyle={{
+            color: "white",
+            opacity: 0.5,
+          }}
+          autosuggestionsConfig={{
+            textareaPurpose: articleTitle,
+            chatApiConfigs: {
+              suggestionsApiConfig: {
+                forwardedParams: {
+                  max_tokens: 5,
+                  stop: ["\n", ".", ","],
+                },
               },
+              insertionApiConfig: {},
             },
-            insertionApiConfig: {},
-          },
-          debounceTime: 250,
-        }}
-      />       
+            debounceTime: 250,
+          }}
+        />
       </div>
     </form>
-  
   );
-
-
 }
