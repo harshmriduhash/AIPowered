@@ -6,12 +6,13 @@ export const runtime = "edge"; // Define the runtime environment.
 
 const researchAction: AnnotatedFunction<string[]> = {
   name: "research",
-  description: "Call this function to conduct research on a certain topic. Respect other notes about when to call this function.",
+  description:
+    "Call this function to conduct research on a certain topic. Respect other notes about when to call this function.",
   implementation: (...args: string[]) => researchWithLangGraph(args[0]),
   argumentAnnotations: [
     {
       name: "topic",
-      type: 'string', 
+      type: "string",
       description: "The topic to research. 5 characters or longer.",
       required: true,
     },

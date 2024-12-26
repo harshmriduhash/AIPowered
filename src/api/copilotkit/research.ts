@@ -1,14 +1,12 @@
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { ChatOpenAI } from "@langchain/openai";
-import { StateGraph, END, StateDefinition} from "@langchain/langgraph";
+import { StateGraph, END, StateDefinition } from "@langchain/langgraph";
 import { RunnableLambda } from "@langchain/core/runnables";
 import { TavilySearchAPIRetriever } from "@langchain/community/retrievers/tavily_search_api";
 import { init } from "next/dist/compiled/webpack/webpack";
 
-
-
 export async function researchWithLangGraph(topic: string): Promise<any> {
-    // function implementation
+  // function implementation
 }
 interface AgentState {
   topic: string;
@@ -16,7 +14,6 @@ interface AgentState {
   article?: string;
   critique?: string;
 }
-
 
 function model() {
   return new ChatOpenAI({
@@ -208,7 +205,6 @@ const config: any = {
 const initialState = {};
 
 const workflow = new StateGraph(initialState, config);
-
 
 // Define the node names correctly
 const nodes: { [key: string]: "__start__" } = {
